@@ -23,12 +23,21 @@ on:
 #   id-token: write
 
 jobs:
+  # TODO this is probably not necessary - we can have just one job after pkgdown.(?)
+  # but if pkgdown completes first, then updates to coverage and unit-test reports will not be reflected in GH Pages.
+  # publish-docs:
+  #   # needs: [coverage, r-cmd-non-cran, r-cmd]
+  #   name: Publish docs
+  #   uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
+  #   secrets:
+  #     REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+
   # audit:
   #   name: Audit Dependencies 🕵️‍♂️
   #   uses: insightsengineering/r.pkg.template/.github/workflows/audit.yaml@main
   r-cmd:
     name: R CMD Check 🧬
-    uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
+    uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@feat/add-workflow-for-publishing-to-gh-pages
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
     with:
@@ -48,7 +57,7 @@ jobs:
         checking top-level files .* NOTE
   r-cmd-non-cran:
     name: R CMD Check (non-CRAN) 🧬
-    uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
+    uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@feat/add-workflow-for-publishing-to-gh-pages
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
     with:
@@ -69,7 +78,7 @@ jobs:
         checking top-level files .* NOTE
   coverage:
     name: Coverage 📔
-    uses: insightsengineering/r.pkg.template/.github/workflows/test-coverage.yaml@main
+    uses: insightsengineering/r.pkg.template/.github/workflows/test-coverage.yaml@feat/add-workflow-for-publishing-to-gh-pages
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
     with:
@@ -125,11 +134,4 @@ jobs:
   #   name: Grammar Check 🔤
   #   uses: insightsengineering/r.pkg.template/.github/workflows/grammar.yaml@main
 
-  # TODO this is probably not necessary - we can have just one job after pkgdown.(?)
-  # but if pkgdown completes first, then updates to coverage and unit-test reports will not be reflected in GH Pages.
-  publish-docs:
-    needs: [coverage, r-cmd-non-cran, r-cmd]
-    name: Publish docs
-    uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
-    secrets:
-      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+

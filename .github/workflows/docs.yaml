@@ -44,16 +44,16 @@ on:
 jobs:
   docs:
     name: Pkgdown Docs 📚
-    uses: insightsengineering/r.pkg.template/.github/workflows/pkgdown.yaml@main
+    uses: insightsengineering/r.pkg.template/.github/workflows/pkgdown.yaml@feat/add-workflow-for-publishing-to-gh-pages
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
     with:
       default-landing-page: latest-tag
       additional-unit-test-report-directories: unit-test-report-non-cran
 
-  publish-docs:
-    needs: [docs]
-    name: Publish docs
-    uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
-    secrets:
-      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+  # publish-docs:
+  #   needs: [docs]
+  #   name: Publish docs
+  #   uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
+  #   secrets:
+  #     REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
