@@ -119,8 +119,11 @@ jobs:
   #   name: Grammar Check 🔤
   #   uses: insightsengineering/r.pkg.template/.github/workflows/grammar.yaml@main
 
-  # TODO this is probably not necessary - we can have just one job after pkgdown.
-  # publish-docs:
-  #   needs: [r-cmd, r-cmd-non-cran, coverage]
-  #   name: Publish docs
-  #   uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@main
+  # TODO this is probably not necessary - we can have just one job after pkgdown.(?)
+  # but if pkgdown completes first, then updates to coverage and unit-test reports will not be reflected in GH Pages.
+  publish-docs:
+    needs: [coverage, r-cmd-non-cran, r-cmd]
+    name: Publish docs
+    uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
+    secrets:
+      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}

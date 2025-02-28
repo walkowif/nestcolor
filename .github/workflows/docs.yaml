@@ -48,3 +48,5 @@ jobs:
     needs: [docs]
     name: Publish docs
     uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
+    secrets:
+      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
