@@ -5,15 +5,16 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "inst/templates/**"
-      - "_pkgdown.*"
-      - DESCRIPTION
-      - "**.md"
-      - "**.Rmd"
-      - "man/**"
-      - "LICENSE.*"
-      - NAMESPACE
+      - test-docs-publishing-workflow
+    # paths:
+    #   - "inst/templates/**"
+    #   - "_pkgdown.*"
+    #   - DESCRIPTION
+    #   - "**.md"
+    #   - "**.Rmd"
+    #   - "man/**"
+    #   - "LICENSE.*"
+    #   - NAMESPACE
   pull_request:
     types:
       - opened
@@ -42,3 +43,8 @@ jobs:
     with:
       default-landing-page: latest-tag
       additional-unit-test-report-directories: unit-test-report-non-cran
+
+  publish-docs:
+    needs: [docs]
+    name: Publish docs
+    uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@main
