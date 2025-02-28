@@ -36,7 +36,8 @@ on:
 
 # Required by publish-docs.
 permissions:
-  contents: read
+  # contents: write required to push to gh-pages by pkgdown
+  contents: write
   pages: write
   id-token: write
 
