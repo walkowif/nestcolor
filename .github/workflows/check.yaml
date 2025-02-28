@@ -16,11 +16,11 @@ on:
       - test-docs-publishing-workflow
   workflow_dispatch:
 
-# Required by publish-docs.
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Required by publish-docs, despite REPO_GITHUB_TOKEN being used.
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
 jobs:
   # audit:
