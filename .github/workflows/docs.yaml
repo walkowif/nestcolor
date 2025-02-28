@@ -47,4 +47,4 @@ jobs:
   publish-docs:
     needs: [docs]
     name: Publish docs
-    uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@main
+    uses: insightsengineering/r.pkg.template/.github/workflows/publish-docs.yaml@feat/add-workflow-for-publishing-to-gh-pages
