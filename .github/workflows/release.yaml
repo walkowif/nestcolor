@@ -20,15 +20,15 @@ jobs:
   #     default-landing-page: latest-tag
   validation:
     name: R Package Validation report 📃
-    needs: release
+    # needs: release
     uses: insightsengineering/r.pkg.template/.github/workflows/validation.yaml@fix/thevalidator-table-theme
     # secrets:
     #   REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
-  release:
-    name: Create release 🎉
-    uses: insightsengineering/r.pkg.template/.github/workflows/release.yaml@main
-    secrets:
-      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+  # release:
+  #   name: Create release 🎉
+  #   uses: insightsengineering/r.pkg.template/.github/workflows/release.yaml@main
+  #   secrets:
+  #     REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
   # build:
   #   name: Build package and reports 🎁
   #   needs: [release, docs]
